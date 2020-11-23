@@ -18,8 +18,10 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void remove(V v) {
-        throw new IllegalArgumentException("Not implemented yet..."); //TODO
+    public void remove(K key) {
+        int hash = hash(key);
+        int index = this.table.length - 1 & hash;
+        this.table[index] = null;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class HashMap<K, V> implements Map<K, V> {
     public V get(K key)  {
         int hash = hash(key);
         int index = this.table.length - 1 & hash;
-        return this.table[index].getValue();
+        return this.table[index] != null ? this.table[index].getValue() : null;
     }
 
     static int hash(Object key) {

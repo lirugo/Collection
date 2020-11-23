@@ -4,9 +4,6 @@ package com.lirugo.app;
 import com.lirugo.collection.HashMap;
 import com.lirugo.collection.Map;
 
-//import java.util.HashMap;
-//import java.util.Map;
-
 public class App {
     public static void main(String[] args){
         Map<String, Client> clients = new HashMap();
@@ -17,7 +14,10 @@ public class App {
         clients.put("5", new Client(5, "James"));
         clients.put("6", new Client(6, "Jacob"));
 
+
+        clients.remove("3");
         for(int i = 1; i <= clients.size(); i++)
-            System.out.println(clients.get(String.valueOf(i)).toString());
+            if(clients.get(String.valueOf(i)) != null)
+                System.out.println(clients.get(String.valueOf(i)).toString());
     }
 }
