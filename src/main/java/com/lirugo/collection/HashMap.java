@@ -3,12 +3,13 @@ package com.lirugo.collection;
 import java.util.Objects;
 
 public class HashMap<K, V> implements Map<K, V> {
-    private Node<K, V>[] table = new Node[16];
-    private int index = 0;
+    private final int CAPACITY_TABLE = 16;
+    private Node<K, V>[] table = new Node[CAPACITY_TABLE];
+    private int size = 0;
 
     @Override
     public int size() {
-       return index;
+       return size;
     }
 
     @Override
@@ -22,9 +23,10 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void add(K k, V v) {
-        table[index] = new Node(k, v, hash(k), null);
-        index++;
+    public void put(K key, V value) {
+        int hash = hash(key);
+        table[table.length - 1 & hash] = new Node(key, value, hash, null);
+        size++;
     }
 
     @Override
