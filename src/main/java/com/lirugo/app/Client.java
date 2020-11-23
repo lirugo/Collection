@@ -1,9 +1,20 @@
 package com.lirugo.app;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
+@AllArgsConstructor
 public class Client {
     private long id;
     private String name;
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
