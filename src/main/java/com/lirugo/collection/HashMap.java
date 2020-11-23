@@ -31,11 +31,9 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key)  {
-        throw new IllegalArgumentException("Not implemented yet..."); //TODO
-    }
-
-    private Node getNode(K key)  {
-        throw new IllegalArgumentException("Not implemented yet..."); //TODO
+        int hash = hash(key);
+        int index = table.length - 1 & hash;
+        return table[index].getValue();
     }
 
     static int hash(Object key) {
@@ -43,10 +41,10 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     static class Node<K, V>{
-        final int hash;
-        final K key;
-        V value;
-        Node<K, V> next;
+        private final int hash;
+        private final K key;
+        private V value;
+        private Node<K, V> next;
 
         Node(K key, V value, int hash, Node<K, V> next) {
             this.key = key;
