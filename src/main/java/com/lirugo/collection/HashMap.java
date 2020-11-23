@@ -9,12 +9,12 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public int size() {
-       return size;
+       return this.size;
     }
 
     @Override
-    public void isEmpty() {
-        throw new IllegalArgumentException("Not implemented yet..."); //TODO
+    public boolean isEmpty() {
+        return this.size <= 0;
     }
 
     @Override
@@ -25,15 +25,15 @@ public class HashMap<K, V> implements Map<K, V> {
     @Override
     public void put(K key, V value) {
         int hash = hash(key);
-        table[table.length - 1 & hash] = new Node(key, value, hash, null);
+        this.table[table.length - 1 & hash] = new Node(key, value, hash, null);
         size++;
     }
 
     @Override
     public V get(K key)  {
         int hash = hash(key);
-        int index = table.length - 1 & hash;
-        return table[index].getValue();
+        int index = this.table.length - 1 & hash;
+        return this.table[index].getValue();
     }
 
     static int hash(Object key) {
